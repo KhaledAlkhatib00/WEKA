@@ -1,0 +1,31 @@
+/* 
+.mat-form-field {
+    display: block;
+    }
+    .in{
+        display:inline-block;
+    }
+    
+
+    .mat-input-element{
+        box-sizing: border-box;
+    } */
+
+    .mat-input-element {
+        box-sizing:border-box;
+    }
+    .mat-form-field {
+        display: block;
+    }
+
+    .card form label+.form-control{
+        margin-bottom: 0px;
+    }
+
+    .input-group, .form-group
+    {
+        margin-bottom: 0px;
+    }
+    input{
+        background-color:rgb(155, 95, 151) ;
+    }

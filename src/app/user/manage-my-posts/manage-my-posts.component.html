@@ -1,0 +1,201 @@
+<app-navbar></app-navbar>
+
+
+<app-navbar></app-navbar>
+
+<div class="index-page" >
+<div class="">
+<div class="wrapper  col-md-12" >
+  <div class="page-header header-filter">
+    <div class="squares square1" id="b"></div>
+    <div  class="squares square2"id="bc"></div>
+    <div class="squares square3"></div>
+    <div class="squares square4"></div>
+    <div class="squares square5"></div>
+    <div class="squares square6"></div>
+
+    <div class="squares square7"></div>
+    <div class="">
+      <div class="content-center brand">
+        <h1 class="h1-seo">WEKA•</h1>
+        <h2>Manage Posts</h2>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<section class="blog-posts" style="margin-left: 5px;">
+    <div class="" >
+      <div class="row" >
+          <!-- <div class="col-lg-12" >
+              <button (click)="openDialog()" class="badge badge-info mr-1" 
+              style="height: 50px; margin-left: 45%;"><i class="tim-icons icon-simple-add" 
+              aria-hidden="true"></i> Create New Post </button>
+          </div> -->
+      
+      <div  class="col-md-8">                
+            <div class="all-blog-posts" >
+                 <div>
+                  <section class="blog-posts col-md-12 " *ngFor="let obj of home.userPosts">
+                    <div class="blog-post">
+                          
+                          <div class="blog-thumb">
+                            <img src="./../../../assets/Images/{{obj.articleImage}}" alt="">
+                          </div>
+                          <div class="down-content">
+                        <span>{{obj.articleTitel}}</span>
+                        <ul class="post-info">
+                          <li><a>{{obj.publishDate|date}}</a></li>
+                        </ul>
+                        <p>{{obj.articleGrapgh}}</p>
+                        <div class="post-options">
+                          <div class="row">
+                            <div class="col-6">
+                              <ul class="post-tags post-info">
+                                <li><a (click)="callViewLikeDailogg()"(click)="home.getArticleLikes(obj.id)" >Likes </a> </li>
+                                <li><a (click)="callCommentDailogg()"(click)="home.getArticleComments(obj.id)">Comments </a></li>
+                              </ul>
+                            </div>
+                            <div class="col-6">
+                              <ul class="post-share">
+                                <li>
+                                  <button (click)="openUpdateDailog(obj.id,obj.articleTitel,
+                                  obj.articleGrapgh,obj.publishDate,obj.categoryId
+                                  ,obj.articleImage,obj.userId)"  class="btn btn-success">Update
+                                  </button>
+                                </li>                                 
+                                <li><button (click)="openDeleteDailog(obj.id)"  class="btn btn-danger">Delete</button>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                          </div>
+                    </div>
+                  </section>
+                  </div>
+             </div>
+                     
+     </div>
+     <div class="col-lg-4 fixed-sidebar">
+      <br>
+          <br>
+          <br>
+          <br>
+          <br>
+      <app-user-sid-bar></app-user-sid-bar>
+    </div>
+</div>
+</div>
+</section>
+
+
+
+
+
+<app-footer></app-footer>
+
+
+
+<style>
+  .example-full-width{width: 750px;}
+</style>
+<ng-template #callUpdateDailog >
+  <form class="example-form" [formGroup]="updateForm" >
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="articleTitel"
+               [(ngModel)]="prv_data.articleTitel">
+      </mat-form-field>
+  <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Text</mat-label>
+          <textarea  matInput formControlName="articleGrapgh"
+          [(ngModel)]="prv_data.articleGrapgh"></textarea>
+        </mat-form-field>
+  <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Publish Date </mat-label>
+          <input type="date" matInput formControlName="publishDate" 
+          [(ngModel)]="prv_data.publishDate">
+        </mat-form-field>
+  <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>CategoryId </mat-label>
+          <input type="text" matInput formControlName="categoryId"
+          [(ngModel)]="prv_data.categoryId">
+        </mat-form-field>
+  <br>
+  
+      <mat-label>Upload Image </mat-label>
+      <input type="file" #file formControlName="articleImage" 
+       [(ngModel)]="prv_data.articleImage"
+       (change)="uplodeFile(file.files)">
+  <br>    
+<mat-dialog-actions align="end">
+      <button  class="btn btn-primary" (click)="SaveupdatePost()">Update</button>
+    </mat-dialog-actions>
+  </form>
+
+  
+</ng-template>
+  
+<ng-template #callDeleteDailog>
+
+  <p style="color: black;">Are you sure you want to delete this article?</p>
+  <button class="btn btn-success" mat-dialog-close="yes">Yes</button>
+  <button class="btn btn-danger" mat-dialog-close="no">No</button>
+  </ng-template>
+
+
+
+  
+  <ng-template #callCommentDailog >
+    <div style="overflow: scroll;border: 5px solid rgb(202, 193, 193);">
+      <div style="background-color:rgb(202, 193, 193);">
+       <h1 style="margin-left:40% ;">Comments</h1> 
+      </div>
+    <table *ngFor="let com of home.articleComments" >
+      <hr>
+      <th > 
+        <div class="comment mt-4 text-justify float-left">
+          <img src="./../../../assets/Images/{{com.userImage}}" alt="" class="rounded-circle" width="40" height="40">
+          <h4>  {{com.fName}} {{com.lName}}</h4>
+          <span style="color: #fff;">  ({{com.commentDate|date}})</span>
+          <br>
+          <p>{{com.commentText}}</p>
+       </div>
+      </th> 
+  
+      <br>
+  
+    </table>
+  <br>
+  </div>
+  
+  </ng-template>
+
+  <style>
+    .example-full-width{width: 750px;height:100px ;}
+  </style>
+  <ng-template #callViewLikeDailog >
+    <div style="overflow: scroll;border: 5px solid rgb(202, 193, 193);">
+      <div style="background-color:rgb(202, 193, 193);">
+       <h1 style="margin-left:40% ;">Likes</h1> 
+      </div>
+          <table *ngFor="let com of home.articleLikes" >
+      <hr>
+      <th > 
+        <div class="comment mt-4 text-justify float-left" style="width:300px ;">
+          <img src="./../../../assets/img/{{com.userImage}}" alt="" class="rounded-circle" width="40" height="40">
+          <h4>  {{com.fName}} {{com.lName}}</h4>
+          <br>
+       </div>
+      </th> 
+    </table>
+ 
+  </div>
+  
+  </ng-template>

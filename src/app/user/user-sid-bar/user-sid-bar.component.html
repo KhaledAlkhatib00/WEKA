@@ -1,0 +1,41 @@
+<div class="container " >
+   
+    <aside class="col-md-12" >
+      <div class="search-box">
+        
+
+        <form class="form-inline">
+          <div class="form-group flexContainer col-sm-12">
+           
+            <button (click)="openDialog()" class="btn btn-primary"><span style="font-size:20px ;">+ Create New Post</span></button>
+          </div>
+        </form>
+
+
+      
+      
+      </div>
+      <br>
+
+  
+
+      <div class="recent-posts">
+        <h1>My Activitys</h1>
+        <div class="post" *ngFor="let obj of home.userActivityLike" style="border-bottom: 2px solid;">
+          <div class="post-image">
+            <img src="./../../../assets/Images/{{obj.articleImage}}" alt="Food" />
+          </div>
+          <div class="post-info" style="margin-top:0">
+            
+             {{obj.activityText}}  
+          
+           
+          </div>
+        </div>
+        
+      </div>
+      
+    
+    </aside>
+  </div>
+ 

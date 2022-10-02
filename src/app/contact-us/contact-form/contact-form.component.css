@@ -1,0 +1,53 @@
+.mat-form-field {
+    display: block;
+    }
+    .in{
+        display:inline-block;
+    }
+    
+    
+input {
+    background-color: rgb(223, 216, 216);
+     margin-top:0.5px ;
+ }
+ textarea{
+    background-color: rgb(223, 216, 216);
+    margin-top:2px ;
+
+ }
+ i{
+     color: #000;
+ }
+ 
+ .input-group-text{
+     background-color:rgb(223, 216, 216);
+ }
+ .input-group-prepend .input-group-text, .input-group-prepend .input-group-text{
+     border: 0px;
+ }
+ 
+ .input-group-focus{
+     background-color: rgb(223, 216, 216);
+ }
+ .card-register .card-header .card-title{
+     color: #fff;
+ }
+
+
+ .square1 {
+    animation: move-left-right 6s infinite;
+    height: 300px;
+    width: 400px;
+    opacity: 0.7;
+    left: 7%;
+    top:0%;
+  }
+
+  .card-register .card-header .card-title {
+    position: relative;
+    font-size: 5em;
+    font-weight: 900;
+    color: #fff;
+    margin-left: -5px;
+    z-index: 1;
+  }

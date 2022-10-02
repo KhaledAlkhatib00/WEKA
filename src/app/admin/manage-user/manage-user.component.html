@@ -1,0 +1,170 @@
+
+<app-sidebar></app-sidebar>
+<div class="container col-md-10 " style="width:150% ; margin-left: 17%;">
+
+ 
+
+
+
+<div class="container-fluid py-4">
+    
+            
+
+
+
+                <div class="content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h4 class="card-title"> Users Table</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+
+
+                            
+                        
+
+
+                            <table class="table tablesorter ">
+                              <thead class="text-primary h2">
+                                <tr>
+                                  <th>
+                                    User
+                                  </th>
+                                  <th>
+                                    Block Status
+                                  </th>
+                                  <th>
+                                    phoneNumber
+                                  </th>
+                                  <th class="text-center">
+                                    Controles
+                                  </th>
+                                </tr>
+                              </thead>
+
+                <tbody class="h4">
+
+
+
+                  <tr *ngFor="let obj of user.users">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          
+                          <img style="margin-right:20px; ;" src="./../../../assets/Images/{{obj.userImage}}" class="" height="50px" width=50 >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm text-secondary">{{obj.fName}} {{obj.lName}}</h6>
+                          <p class="text-xs text-secondary mb-0">{{obj.email}} </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      
+                      <h6 *ngIf="obj.blockStatus==1" class="mb-0 text-sm text-success"> Active</h6>
+                      <h6 *ngIf="obj.blockStatus==2" class="mb-0 text-sm text-danger"> Blocked</h6>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.phoneNumber}}</p>
+                      
+                    </td>
+                    
+                   
+                    <td  class="align-middle d-flex justify-content-around">
+                      <a  class="text-primary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" (click)="updateDailog(obj)">
+                         Edit
+                      
+                      </a>
+                      <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user" (click)="DeleteUser(obj.id,obj.email)">
+                        Delete
+                      </a>
+                      <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Block user" (click)="BlockUser(obj.id,obj.email)">
+                        Block
+                      </a>
+                      <a  class="text-success font-weight-bold text-xs" data-toggle="tooltip" data-original-title="UnBlock user" (click)="UnBlockUser(obj.id,obj.email)">
+                        UnBlock
+                      </a>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+
+            
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                </div></div></div>
+
+<ng-template #calldeleteDailog>
+
+  <div style="text-align: center;">
+    <h2  style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure uyou want to delete this user?</h2>
+    <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Yes</button>
+    <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+  </div>
+    </ng-template>
+
+
+    <ng-template #callupdateDailog>
+      <div style="text-align: center;">
+        <form class="example-form" [formGroup]="updateForm"  style="margin-right:30px ; margin-left:30px ; color:black">
+           
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>email</mat-label>
+                <input type="email" matInput formControlName="email"
+                [(ngModel)]="p_data.email">
+              </mat-form-field>
+        <br>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label> first Name </mat-label>
+                <input type="text" matInput formControlName="fName" [(ngModel)]="p_data.fName">
+              </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label> last Name </mat-label>
+            <input type="text" matInput formControlName="lName" [(ngModel)]="p_data.lName">
+          </mat-form-field>
+    <br>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>phone Number </mat-label>
+                <input type="text" matInput formControlName="phoneNumber"[(ngModel)]="p_data.phoneNumber">
+              </mat-form-field>
+        <br>
+        
+        
+            <mat-label>Upload Image </mat-label>
+            <input type="file" #file formControlName="userImage" (change)="uploadImage(file.files)" [(ngModel)]="p_data.userImage" class="btn btn-secondary">
+            <button (click)="updateUser()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Update</button>
+        </form>
+        
+       
+      </div>
+    </ng-template>
+
+    <ng-template #callBlockDailog>
+      <div style="text-align: center;">
+
+      <h2  style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure you want to Block this user?</h2>
+      <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Yes</button>
+      <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+      </div>
+      </ng-template>
+
+      
+      <ng-template #callUnBlockDailog>
+
+        <div style="text-align: center;">
+        <h2  style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure you want to UnBlock this user?</h2>
+        <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Yes</button>
+        <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+        </div>
+        </ng-template>
+    

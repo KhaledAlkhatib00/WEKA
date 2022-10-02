@@ -1,0 +1,110 @@
+<app-sidebar></app-sidebar>
+<div class="container col-md-10 " style="width:120% ; margin-left: 17%;">
+<div class="container-fluid py-4">
+    
+
+            
+    <div class="custom-control custom-switch">
+       
+      
+      </div>
+
+                <div class="content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card ">
+                        <div class="card-header">
+
+                          <h4 class="card-title"> Report Table</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive" >
+                            <table class="table tablesorter ">
+                              <thead class="text-primary h2">
+                                <tr>
+                                    
+                                  <th>
+                                    user image
+                                  </th>
+                                  <th>
+                                    Name
+                                   </th>
+                                  
+                                  <th>
+                                    Report Message
+                                  </th>
+                                  <th >
+                                    Report Date
+                                  </th>
+                                  <th >
+                                   Article Titel
+                                  </th>
+                                  <th >
+                                    Aouther Name
+                                   </th>
+                                   <th >
+                                    Aouther Email
+                                   </th>
+                                </tr>
+                              </thead>
+                <tbody class="h4">
+
+
+
+                  <tr *ngFor="let obj of report.allReportInfo">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          
+                          <img src="./../../../assets/Images/{{obj.userimage}}" class="avatar avatar-sm me-3" >
+                        </div>
+                        
+                      </div>
+                    </td>
+                    <td>
+                        <h6 class="mb-0 text-sm text-secondary">{{obj.fName}} {{obj.lName}} </h6>
+                    </td>
+                    <td>
+                      
+                      <h6  class="mb-0 text-sm text-secondary"> {{obj.reportMessage}}</h6>
+                      
+                    </td>
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.reportdate}}</h6>
+                    </td>
+                    <td>
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.articletitel|date}}</h6>
+                        
+                    </td>
+                    <td>
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.aoutherName}}</h6>
+                        
+                    </td>
+                    <td>
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.aoutherEmail}}</h6>    
+                    </td>
+                   
+                    <td>
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon" 
+                        (click)="contactAouther(obj.aoutherEmail,obj.articletitel,obj.reportMessage,obj.reportdate,obj.aoutherName)">
+                            <i class="tim-icons icon-email-85"></i>
+                        </button>
+                        </td>
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-danger" *ngIf="obj.activeStatus==1"> No</h6>
+                        <h6  class="mb-0 text-sm text-success" *ngIf="obj.activeStatus==2"> Yes</h6>
+                    </td>
+                    
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                </div>
+

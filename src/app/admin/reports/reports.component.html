@@ -1,0 +1,112 @@
+<app-sidebar></app-sidebar>
+<div class="container col-md-10 " style="width:120% ; margin-left: 15%;">
+<div class="container-fluid py-4">
+    
+
+            
+    <div class="custom-control custom-switch">
+       
+      
+      </div>
+
+
+                <div class="content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card ">
+                        <div class="card-header">
+
+                          <h4 class="card-title"> Report Table</h4>
+                        </div>
+                        <div class="card-body">
+                          <button style="margin-left: 80%;" class="btn btn-success" (click)="exportexcel()">Export to Excel</button>
+                          <div class="table-responsive" >
+                            <table class="table tablesorter " id="excel-table" >
+                              <thead class="text-primary h2">
+                                <tr>
+                                    
+                                  <th>
+                                    subject
+                                  </th>
+                                  <th>
+                                    Authar
+                                   </th>
+                                  <th>
+                                   Number of Views
+                                  </th>
+                                  <th>
+                                    Publish Date
+                                  </th>
+                                  <th class="text-center">
+                                    Status
+                                  </th>
+                                  <th class="text-center">
+                                   Is Paid
+                                  </th>
+                                </tr>
+                              </thead>
+                <tbody class="h4">
+
+
+
+                  <tr *ngFor="let obj of report.articleReports">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          
+                          <img src="./../../../assets/Images/{{obj.articleImage}}" class="avatar avatar-sm me-3" >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm text-secondary">{{obj.articleTitel}} </h6>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                        <h6 class="mb-0 text-sm text-secondary">{{obj.fname}} {{obj.lname}} </h6>
+                    </td>
+                    <td>
+                      
+                      <h6  class="mb-0 text-sm text-secondary"> {{obj.views}}</h6>
+                      
+                    </td>
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.publishDate}}</h6>
+                    </td>
+                    
+                   
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-success" *ngIf="obj.blockStatus==1">Active</h6>
+                        <h6  class="mb-0 text-sm text-danger" *ngIf="obj.blockStatus==2">Blocked</h6>
+                    </td>
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-danger" *ngIf="obj.activeStatus==1"> No</h6>
+                        <h6  class="mb-0 text-sm text-success" *ngIf="obj.activeStatus==2"> Yes</h6>
+                    </td>
+                    
+                  </tr>
+                 
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Number of articles : {{statistic.numberofarticle[0].countOfArticle}}</td>
+                    <td>Number of users : {{report.NumOfUsers[0].numberOfUsers}}</td>
+                    <td>Number of comments : {{statistic.countComment[0].countOfCommentt}}</td>
+                  </tr>
+                  <tr>
+                    <td>Number of favorite : {{statistic.countFavorite[0].countOfCommentt}}</td>
+                    <td>Losses : {{statistic.losses[0].getTheLosses}}</td>
+                    <td>Profits : {{ statistic.profit[0].getTheProfet}} </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                </div>
+

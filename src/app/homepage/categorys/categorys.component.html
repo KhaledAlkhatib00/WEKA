@@ -1,0 +1,173 @@
+<app-navbar></app-navbar>
+<div class="index-page" >
+<div class="">
+<div class="wrapper  col-md-12" >
+  <div class="page-header header-filter">
+    <div class="squares square1" id="b"></div>
+    <div  class="squares square2"id="bc"></div>
+    <div class="squares square3"></div>
+    <div class="squares square4"></div>
+    <div class="squares square5"></div>
+    <div class="squares square6"></div>
+
+    <div class="squares square7"></div>
+    <div class="">
+      <div class="content-center brand">
+        <h1 class="h1-seo">WEKA•</h1>
+        <h3>Categorys</h3>
+      </div>
+    </div>
+  </div>
+
+</div></div>
+<br>
+
+<!--HomePosts Section-->
+
+<section class="blog-posts">
+  <div class="">
+    <div class="row">
+      <div class="col-lg-7" style="margin-left:5% ;">
+        <div class="all-blog-posts">
+              <div class="row">
+                <div class="col-lg-12">
+
+                  <section class="blog-posts" *ngFor="let obj of home.filterdPosts">
+                    <div class="blog-post">
+                          
+                          <div class="blog-thumb">
+                            <img src="./../../../assets/Images/{{obj.articleImage}}" alt="">
+                          </div>
+                          <div class="down-content">
+                        <span>{{obj.articleTitel}}</span>
+                        <ul class="post-info">
+                          <li >
+                            <a >{{obj.fName}} {{obj.lName}}</a>
+                          </li>
+
+                          <li><a>{{obj.publishDate|date}}</a></li>
+                          <li><a>{{obj.categoryName}}</a></li>
+                          <li><button (click)="addToFavorite(home.userId,obj.id)" class=" btn-warning btn-round fa fa-star"><span style="color:#fff ;font-size: 12px;"></span></button>                            </li>
+                          <li><button (click)="callAddReportDailogg(obj.id,home.userId)" class=" btn-danger btn-round fa fa-flag-o"><span style="color:#fff ;font-size: 12px;"></span></button>                            </li>
+
+                        </ul>
+                        <p>{{obj.articleGrapgh}}
+                        <div class="post-options">
+                          <div class="row">
+                            <div class="col-6">
+                              <ul class="post-tags" *ngFor="let l of home.numberOfLikes">
+                                <button (click)="addLike(home.userId,obj.id)" 
+                                (click)="CreateUserActivityLike(obj.id,obj.articleTitel)"
+                                 class="btn btn-success btn-icon btn-round fa fa-heart"><span style="color:#fff ;font-size: 12px;">{{l.countOfLike}}</span></button>
+                              
+                            </ul>
+                            </div>
+                            <div class="col-6">
+                              <ul class="post-share">
+                                <button (click)="callAddCommentDailogg(obj.id,home.userId)"
+                                  (click)="home.getArticleComments(obj.id)"  (click)="GetArticleIdandTitel(obj.id,obj.articleTitel)"
+                                  class="btn btn-primary btn-icon btn-round fa fa-comment"><span style="color:#fff ;font-size: 12px;"></span></button>
+
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                          </div>
+                    </div>
+                  </section>
+
+
+                  </div>
+                 
+
+           </div>
+       </div>              
+   </div>
+             <!--sidebar-->
+<div class="col-lg-4 fixed-sidebar">
+  <br>
+      <br>
+      <br>
+      <br>
+      <br>
+  <app-sidebar></app-sidebar>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<style>
+  .example-full-width{width: 750px;height:100px ;}
+</style>
+<ng-template #callAddCommentDailog >
+  <div style="overflow: scroll;border: 5px solid rgb(202, 193, 193);">
+    <div style="background-color:rgb(202, 193, 193);" *ngFor="let c of home.numberOfComments">
+      <h1 style="margin-left:40% ;">{{c.countOfCommentt}}  Comments</h1>
+    </div>
+     <table *ngFor="let com of home.articleComments" >
+    <hr>
+    <th > 
+      <div class="comment mt-4 text-justify float-left">
+        <img src="./../../../assets/Images/{{com.userImage}}" alt="" class="rounded-circle" width="40" height="40">
+        <h4>  {{com.fName}} {{com.lName}}</h4>
+        <span style="color: #fff;">  ({{com.commentDate|date}})</span>
+        <br>
+        <p>{{com.commentText}}</p>
+     </div>
+    </th> 
+
+    <br>
+
+  </table>
+<br>
+  <form  class="example-form" [formGroup]="createCommentForm" >
+    <mat-form-field class="example-full-width" appearance="fill">
+
+      <textarea  type="text" matInput formControlName="commentText"
+             placeholder="Add Comment">            
+      </textarea>
+      <button  class="btn fa fa-paper-plane" (click)="CreateUserActivityComment()" (click)="createComment()" mat-button [mat-dialog-close]="true" cdkFocusInitial ></button>
+
+    </mat-form-field>
+
+  </form>
+</div>
+
+</ng-template>
+  
+
+
+
+
+
+
+<ng-template #callAddReportDailog >
+  <div style="border: 5px solid rgb(202, 193, 193);">
+  <div style="background-color:rgb(202, 193, 193);">
+   <h1 style="margin-left:40% ;"> Report</h1>
+ </div>
+
+ <form  class="example-form" [formGroup]="CreateReportForm" >
+  <mat-form-field class="example-full-width" appearance="fill">
+    <input  type="text" matInput formControlName="reportMessage"
+           placeholder="Add Report Message">           
+           
+  </mat-form-field>
+
+</form>
+<mat-dialog-actions align="end">
+<button (click)="createReports()" style="margin-top: -40px;" class="btn btn-danger">Report</button>
+</mat-dialog-actions>
+ </div>
+ </ng-template>
+   
+
+
+
+
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,307 @@
+
+<app-sidebar></app-sidebar>
+
+
+<div class="container col-md-10 " style="width:150% ; margin-left: 12%;">
+  
+<div class="container-fluid py-4 col-md-10">
+    <div class="row">
+        
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6> Home Page</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Text 1</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Text 2</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Text 3</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Text 4</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Controles</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let obj of home.home">
+                   
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.text1}}</p>
+                      
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.text2}}</p>
+                        
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.text3}}</p>
+                        
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.text4}}</p>
+                        
+                      </td>
+                   
+                      <td>
+
+                        <img src="./../../../assets/Images/{{obj.image1}}" height="200px" width="350px">
+                     
+                      
+                    </td>
+                    <td  class="align-middle d-flex justify-content-around">
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon"  (click)="updateHomeDailog(obj)">
+                            <i class="tim-icons icon-pencil"></i>
+                        </button>
+                      
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+
+
+
+<div class="container col-md-10 " style="width:150% ; margin-left: 12%;">
+  
+    <div class="container-fluid py-4 col-md-10">
+        <div class="row">
+            
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6> Contact Page</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Text</th>
+                    
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Controles</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let obj of contact.contact">
+                   
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.subject}}</p>
+                      
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.messageText}}</p>
+                        
+                      </td>
+                     
+                   
+                    <td  class="align-middle d-flex justify-content-around">
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon"  (click)="updateContactDailog(obj)">
+                            <i class="tim-icons icon-pencil"></i>
+                        </button>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+              
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+
+
+<div class="container col-md-10 " style="width:150% ; margin-left: 12%;">
+  
+    <div class="container-fluid py-4 col-md-10">
+        <div class="row">
+            
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6> About Page</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">text</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">location</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Controles</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let obj of about.about">
+                   
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.aboutText}}</p>
+                      
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.locationPath}}</p>
+                        
+                      </td>
+                     
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.title}}</p>
+                        
+                      </td>
+                      <td>
+
+                        <img src="./../../../assets/Images/{{obj.image}}" height="200px" width="350px">
+                     
+                      
+                    </td>
+                   
+                    <td  class="align-middle d-flex justify-content-around">
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon"  (click)="updateAboutDailog(obj)">
+                            <i class="tim-icons icon-pencil"></i>
+                        </button>
+                      
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+</div>
+
+
+    <ng-template #callUpdateHomeDailog>
+      <div style="text-align: center;">
+        <form class="example-form" style="margin-right:30px ; margin-left:30px ; color:black" [formGroup]="homeForm" >
+           
+            
+             
+        
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Text 1</mat-label>
+                <input type="text" matInput formControlName="text1" [(ngModel)]="p_Home.text1">
+              </mat-form-field>
+
+        <br>
+           <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Text 2</mat-label>
+                <input type="text" matInput formControlName="text2" [(ngModel)]="p_Home.text2">
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Text 3</mat-label>
+                <input type="text" matInput formControlName="text3" [(ngModel)]="p_Home.text3">
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Text 4</mat-label>
+                <input type="text" matInput formControlName="text4" [(ngModel)]="p_Home.text4">
+              </mat-form-field>
+              <br>
+              <mat-label > Image</mat-label>
+              <input type="file"  formControlName="image1" #file (change)="uploadHomeImage(file.files)" class="btn btn-secondary">
+              <br>
+            <button (click)="UpdateHome()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Update</button>
+        </form>
+      </div>
+       
+        
+    </ng-template>
+
+    
+    <ng-template #callUpdateContactDailog>
+        <div style="text-align: center;">
+          <form class="example-form" style="margin-right:30px ; margin-left:30px ; color:black" [formGroup]="contactForm">
+             
+              
+               
+          
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Title</mat-label>
+                  <input type="text" matInput formControlName="subject" [(ngModel)]="p_contact.subject">
+                </mat-form-field>
+  
+          <br>
+             <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Text</mat-label>
+                  <input type="text" matInput formControlName="messageText" [(ngModel)]="p_contact.messageText">
+                </mat-form-field>
+                
+                <br>
+              
+              <button (click)="UpdateContact()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Update</button>
+          </form>
+        </div>
+         
+          
+      </ng-template>
+ 
+
+      
+    <ng-template #callUpdateAboutDailog>
+        <div style="text-align: center;">
+          <form class="example-form" style="margin-right:30px ; margin-left:30px ; color:black" [formGroup]="aboutForm">
+             
+              
+               
+          
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Text 1</mat-label>
+                  <input type="text" matInput formControlName="aboutText" [(ngModel)]="p_about.aboutText">
+                </mat-form-field>
+  
+          <br>
+             <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Location Path</mat-label>
+                  <input type="text" matInput formControlName="locationPath" [(ngModel)]="p_about.locationPath">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Title</mat-label>
+                  <input type="text" matInput formControlName="title" [(ngModel)]="p_about.title">
+                </mat-form-field>
+               
+                <br>
+       
+                <mat-label > Image</mat-label>
+                <input type="file"  formControlName="image" #file (change)="uploadImage(file.files)" class="btn btn-secondary">
+                <br>
+              
+              <button (click)="UpdateAbout()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Update</button>
+          </form>
+        </div>
+         
+          
+      </ng-template>

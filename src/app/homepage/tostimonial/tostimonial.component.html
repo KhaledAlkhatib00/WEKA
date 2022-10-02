@@ -1,0 +1,102 @@
+
+<div class="testimonial" style="display:flex ;">
+<figure class="snip1204" *ngFor="let obj of home.homeTestimonial" style="	margin-top: 12%;">
+
+  <blockquote>  
+    <div [ngSwitch]="obj.rate"style="margin-left: 50%;">
+      <div *ngSwitchCase="5" >
+        <span style="color:yellow;" class="fa fa-star checked"></span>
+          <span style="color:rgb(255, 255, 0);" class="fa fa-star checked"></span>
+          <span style="color:yellow;" class="fa fa-star checked"></span>
+          <span style="color:yellow;" class="fa fa-star checked"></span>
+          <span style="color:yellow;" class="fa fa-star checked"></span>
+        </div>
+        <div *ngSwitchCase="4">
+          <span style="color:yellow;" class="fa fa-star checked"></span>
+            <span style="color:yellow;" class="fa fa-star checked"></span>
+            <span style="color:yellow;" class="fa fa-star checked"></span>
+            <span style="color:yellow;" class="fa fa-star checked"></span>
+          </div>
+          <div *ngSwitchCase="3">
+            <span style="color:yellow;" class="fa fa-star checked"></span>
+              <span style="color:yellow;" class="fa fa-star checked"></span>
+              <span style="color:yellow;" class="fa fa-star checked"></span>
+            </div>
+            <div *ngSwitchCase="2">
+              <span style="color:yellow;" class="fa fa-star checked"></span>
+                <span style="color:yellow;" class="fa fa-star checked"></span>
+              </div>
+              
+      <div *ngSwitchDefault><span style="color:yellow;" class="fa fa-star checked"></span> </div>
+    </div>
+      <br> 
+         {{obj.messageText}}</blockquote>
+
+
+  
+
+
+  <div class="author">
+    <img src="./../../../assets/Images/{{obj.userImage}}" alt="sq-sample7" />
+   <span>{{obj.fName}} {{obj.lName}}</span>
+  </div>
+</figure>
+</div>
+
+
+<div class="align-middle d-flex justify-content-around">
+  <button class="btn btn-info " (click)="CreateDialog()" style="text-align: center;">Add Review</button>
+</div>
+
+
+
+
+
+  
+
+<ng-template #callCreateDailog>
+  <div style="text-align: center;">
+    <form class="example-form" style="margin-right:30px ; margin-left:30px ; color:black" [formGroup]="testForm" >
+       
+        
+         
+    
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Your testimonial/review</mat-label>
+            <input type="text" matInput formControlName="messageText">
+          </mat-form-field>
+    <br>
+    <!-- <mat-radio-group formControlName="rate">
+    <mat-radio-button class="star-1" #s1 value="1" >1</mat-radio-button>
+    <mat-radio-button class="star-1" #s2 value="2" >2</mat-radio-button>
+    <mat-radio-button class="star-1" #s3 value="3" >3</mat-radio-button>
+    <mat-radio-button class="star-1" #s4 value="4" >4</mat-radio-button>
+    <mat-radio-button class="star-1" #s5 value="5" >5</mat-radio-button>
+  </mat-radio-group> -->
+    <div class="stars">
+      <input type="radio" name="star" class="star-1" id="star-1" (click)="select1()"/>
+      <label class="star-1" for="star-1">1</label>
+      <input type="radio" name="star" class="star-2" id="star-2" (click)="select2()"/>
+      <label class="star-2" for="star-2">2</label>
+      <input type="radio" name="star" class="star-3" id="star-3" (click)="select3()"/>
+      <label class="star-3" for="star-3">3</label>
+      <input type="radio" name="star" class="star-4" id="star-4" (click)="select4()"/>
+      <label class="star-4" for="star-4">4</label>
+      <input type="radio" name="star" class="star-5" id="star-5" (click)="select5()"/>
+      <label class="star-5" for="star-5">5</label>
+      <span></span>
+   
+    </div>
+
+    <br>
+ 
+        <button (click)="CreateTestimonial()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Create</button>
+    </form>
+    
+  </div>
+    
+</ng-template>
+
+  
+
+

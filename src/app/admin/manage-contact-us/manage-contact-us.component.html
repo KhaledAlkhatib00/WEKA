@@ -1,0 +1,68 @@
+
+<app-sidebar></app-sidebar>
+
+
+<div class="container col-md-12 " style="width:150% ; margin-left: 7%;">
+    
+<div class="container-fluid py-4 col-md-10">
+    <div class="row">
+        
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Messages Table</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Message</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Email</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Controles</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let obj of message.messages">
+                   
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.messageText}}</p>
+                      
+                    </td>
+                    <td>
+                        <a  class="text-xs font-weight-bold mb-0 text-secondary" href="mailto:{{obj.email}}">{{obj.email}}</a>
+                        
+                      </td>
+                   
+                    <td  class="align-middle d-flex justify-content-around">
+                      
+                      <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user" (click)="DeleteMessage(obj.id)">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+</div>
+<ng-template #callDeleteDailog>
+
+  <div style="text-align: center;">
+    <h2  style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure uyou want to delete this Message?</h2>
+    <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Yes</button>
+    <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+  </div>
+    </ng-template>
+
+
+   
+    

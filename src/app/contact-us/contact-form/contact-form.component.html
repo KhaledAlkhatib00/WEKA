@@ -1,0 +1,78 @@
+
+
+<app-navbar></app-navbar>
+
+<div class=" section section-signup offset-md-2">
+    <div class="container">
+   <div class="row row-grid justify-content-between align-items-center">
+          <div class="col-lg-6">
+            <h3 class="display-3 text-white">{{contact.contactUsInfo[0].subject}}</h3><span class="text-white ">  </span>
+       
+         <p class="text-white mb-3">
+         {{contact.contactUsInfo[0].messageText}}
+          </p>
+         
+        </div>
+        <div class="col-lg-6 mb-lg-auto">
+          <div class="card card-register">
+            <div class="card-header">
+              <img
+                alt="Card image"
+                class="card-img square1"
+                src="./../../../assets/img/square1.png"
+              />
+
+              <h4 class="card-title">Contact us</h4>
+            </div>
+            <div class="card-body">
+              <form  [formGroup]="createForm"  >
+                <mat-form-field appearance="outline" >
+                        
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"></i>
+                      </div>
+                    </div>
+                    <input style="color: black;" matInput type="text" class="form-control" placeholder="Email" formControlName="email">
+                  </div>
+                  <mat-error *ngIf="createForm.controls['email'].hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="createForm.controls['email'].hasError('email')">
+                     please enter a valid<strong>Email</strong>
+                    </mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-lock-circle"></i>
+                    </div>
+                  </div>
+                  <textarea style="margin-top: 1px;color: black;" matInput type="text" class="form-control" placeholder="Message" formControlName="messageText"></textarea>
+                </div>
+                <mat-error *ngIf="createForm.controls['messageText'].hasError('required')">
+                    Message <strong>required</strong>
+                </mat-error>
+                
+
+            </mat-form-field>
+
+              
+              </form>
+            </div>
+            <mat-dialog-actions></mat-dialog-actions>
+            <div class="card-footer"style="margin-top:-30px ;">
+              <mat-dialog-actions >
+                <div class="card-footer">
+                  <button class="btn btn-success" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createContact()"><span style="color:white">Send</span></button>            </div>
+                </mat-dialog-actions>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <app-footer></app-footer>

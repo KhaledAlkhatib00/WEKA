@@ -1,0 +1,65 @@
+
+
+
+/* .card-register {
+    overflow: auto;
+}
+
+.mat-form-field {
+display: block;
+}
+
+.card-register .card-header{
+    padding: 0 0 0 0;
+    margin-left: 15px;
+}
+.mat-input-element{
+    box-sizing: border-box;
+} */
+
+.card-register {
+    overflow: auto;
+}
+
+.mat-form-field {
+display: block;
+}
+.in{
+    display:inline-block;
+}
+
+.card-register .card-header{
+    padding: 0 0 0 0;
+    margin-left: 15px;
+}
+.mat-input-element{
+    box-sizing: border-box;
+}
+.page-header {
+    overflow: unset;
+}
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline-thick{
+    background-color: #2abb2a;
+}
+
+input {
+   background-color: rgb(223, 216, 216);
+    margin-top:0.5px ;
+}
+i{
+    color: #000;
+}
+
+.input-group-text{
+    background-color:rgb(223, 216, 216);
+}
+.input-group-prepend .input-group-text, .input-group-prepend .input-group-text{
+    border: 0px;
+}
+
+.input-group-focus{
+    background-color: rgb(223, 216, 216);
+}
+.card-register .card-header .card-title{
+    color: #fff;
+}

@@ -1,0 +1,55 @@
+<div class="container " >
+   
+    <aside class="col-md-12" >
+      <div class="search-box">
+        
+
+        <form class="form-inline">
+          <div class="form-group flexContainer col-sm-12">
+            <input type="search" class="inputField form-control" name="search-box" id="search-box" placeholder="Search..."
+             [value]="articleTitel" (change)="inputValue($event)" />
+            <i><a type="submit" routerLink="../searchResult"(click)="search()"class="fa fa-search"></a></i>
+          </div>
+        </form>
+
+
+      
+      
+      </div>
+      <br>
+
+  
+
+      <div class="recent-posts">
+        <h1>Recent Posts</h1>
+        <div class="post" *ngFor="let obj of home.recentPosts" style="border-bottom: 2px solid;">
+          <div class="post-image">
+            <img src="./../../../assets/Images/{{obj.articleImage}}" alt="Food" />
+          </div>
+          <div class="post-info">
+            <p>{{obj.fName}} {{obj.lName}} </p>
+            <h6 style="width:100% ;">{{obj.articleTitel}} </h6>
+            
+            <span class="date">
+              <i class="far fa-calendar-alt"></i>{{obj.publishDate|date}}  
+            </span>
+            <span  class="comments"><i (click)="CreateUserActivityLike(obj.id,obj.articleTitel)" (click)="addLike(home.userId,obj.id)" class="far fa-heart"></i></span>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="tags">
+        <h1>Categorys</h1>
+        <div class="tags-container">
+          
+            <a routerLink="../category" (click)="home.filterByCategory(obj.id)" class="tag" *ngFor="let obj of home.category">
+              {{obj.categoryName}}
+            </a>
+
+
+        </div>
+      </div>
+    </aside>
+  </div>
+ 

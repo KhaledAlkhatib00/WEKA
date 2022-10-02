@@ -1,0 +1,187 @@
+<app-navbar></app-navbar>
+
+<div class="register-page">
+<div class="wrapper">
+    <div class="page-header">
+      <div class="page-header-image"></div>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+              <div id="square7" class="square square-7"></div>
+              <div id="square8" class="square square-8"></div>
+              <div class="card card-register">
+                <div class="card-header">
+                  <img class="card-img" src="../../../assets/img/square1.png" alt="Card image">
+                  <h4 class="card-title">Register</h4>
+                </div>
+                <div class="card-body">
+                  <form class="form" [formGroup]="registerform">
+
+                    <mat-form-field appearance="outline" class="in" >
+                        
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-lock-circle"></i>
+                            </div>
+                          </div>
+                          <input style="color: #000;" matInput type="text" class="form-control" placeholder="First Name" formControlName="fName">
+                        </div>
+                        <mat-error *ngIf="registerform.controls['fName'].hasError('required')">
+                            First Name is <strong>required</strong>
+                          </mat-error>
+                         
+    
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="in">
+                        
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-lock-circle"></i>
+                            </div>
+                          </div>
+                          <input style="color: #000;" matInput type="text" class="form-control" placeholder="Last Name" formControlName="lName">
+                        </div>
+                        <mat-error *ngIf="registerform.controls['lName'].hasError('required')">
+                            Last Name is <strong>required</strong>
+                          </mat-error>
+                         
+    
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" >
+                        
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <i class="tim-icons icon-lock-circle"></i>
+                          </div>
+                        </div>
+                        <input style="color: #000;" matInput type="text" class="form-control" placeholder="userName" formControlName="userName">
+                      </div>
+                      <mat-error *ngIf="registerform.controls['userName'].hasError('required')">
+                        Username is <strong>required</strong>
+                        </mat-error>
+                     
+  
+                  </mat-form-field>
+                    
+
+                    <mat-form-field appearance="outline" >
+                        
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-lock-circle"></i>
+                            </div>
+                          </div>
+                          <input style="color: #000;" matInput type="text" class="form-control" placeholder="Email" formControlName="email">
+                        </div>
+                        <mat-error *ngIf="registerform.controls['email'].hasError('required')">
+                            Email is <strong>required</strong>
+                          </mat-error>
+                          <mat-error *ngIf="registerform.controls['email'].hasError('email')">
+                           please enter a valid<strong>Email</strong>
+                          </mat-error>
+    
+                    </mat-form-field>
+
+
+                   
+              
+
+
+
+                    <mat-form-field appearance="outline"  >
+                        
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input style="color: #000;" matInput type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber">
+                    </div>
+                    <mat-error *ngIf="registerform.controls['phoneNumber'].hasError('required')">
+                        Phone is <strong>required</strong>
+                      </mat-error>
+                    
+
+                </mat-form-field>
+                <input type="file" #file formControlName="userImage" (change)="uploadImage(file.files)" class="ce btn btn-info">
+
+
+                <mat-form-field appearance="outline" >
+                        
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input type="password" style="color: #000;" matInput  class="form-control" placeholder="Password" formControlName="password">
+                    </div>
+                    <mat-error *ngIf="registerform.controls['password'].hasError('required')">
+                        password is <strong>required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="registerform.controls['password'].hasError('minlength')">
+                        password is too <strong>short</strong>
+                      </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                        
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input  type="password" style="color: #000;" matInput  class="form-control" placeholder="Re-Password" formControlName="confirmpassword"  (change)="matchError()" >
+                    </div>
+                    <mat-error *ngIf="registerform.controls['confirmpassword'].hasError('minlength')">
+                      Please enter a strong password
+                    </mat-error>
+                    <mat-error *ngIf="registerform.controls['confirmpassword'].hasError('required')">
+                      password is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registerform.controls['confirmpassword'].hasError('mismatch')">
+                      confirmPassword must match with password
+                    </mat-error>
+
+                </mat-form-field>
+
+                
+
+              
+                    <button type="submit" class="btn btn-info btn-round btn-lg" [disabled]="!registerform.valid" (click)="Submit()" style="margin-left: 120px ;">Register now</button>
+
+                  </form>
+                </div>
+                <!-- <div class="card-footer">
+                  <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg" >Get Started</a>
+                </div> -->
+                <div>
+                    <a href="/security/login" style="color:rgb(180, 61, 174); text-align: center; margin-left: 150px;" >Already have an account?</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="register-bg"></div>
+          <div id="square1" class="square square-1"></div>
+          <div id="square2" class="square square-2"></div>
+          <div id="square3" class="square square-3"></div>
+          <div id="square4" class="square square-4"></div>
+          <div id="square5" class="square square-5"></div>
+          <div id="square6" class="square square-6"></div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+    <app-footer></app-footer>

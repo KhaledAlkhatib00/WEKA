@@ -1,0 +1,114 @@
+<app-navbar></app-navbar>
+<br><br><br><br>
+<div class="container rounded bg-white mt-5 mb-5 col-md-8">
+    <div class="row">
+        
+        <div class="col-md-8 border-right">
+            <div class="p-3 py-5">
+                
+                <form [formGroup]="updateForm">
+                <div>
+                   <div class="d-flex flex-column align-items-center text-center "><input #file type="file" (change)="UploadImage(file.files)" hidden >
+                    <img *ngIf="this.user.display_Image==null" (click)="file.click()" class="rounded-circle mt-5" width="150px" src="../../../assets/Images/{{this.profile.user[0].userImage}}">
+                    <img *ngIf="this.user.display_Image!=null" (click)="file.click()" class="rounded-circle mt-5" width="150px" src="../../../assets/Images/{{this.user.display_Image}}">
+                    <span class="font-weight-bold">{{this.profile.user[0].fName}} {{this.profile.user[0].lName}}</span><span> </span></div>
+                </div>
+                <div class="row d-flex ">
+                    
+                    <div class="col-md-6 ">
+                        <mat-form-field  appearance="outline">
+                        <label class="labels">First Name</label>
+                        <input matInput type="text" class="form-control" formControlName="fName" [(ngModel)]="this.profile.user[0].fName" >
+                        <mat-error *ngIf="updateForm.controls['fName'].hasError('required')">
+                            First Name is <strong>required</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    </div>
+               
+               
+                    <div class="col-md-6 ">
+                        <mat-form-field  appearance="outline">
+                        <label class="labels">Last Name</label>
+                        <input  matInput type="text" class="form-control"  formControlName="lName" [(ngModel)]="this.profile.user[0].lName">
+                        <mat-error *ngIf="updateForm.controls['lName'].hasError('required')">
+                            Last Name is <strong>required</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    </div>
+                
+                </div>
+                <div class="row">
+                   
+                    <div class="col-md-12 ">
+                        <mat-form-field  appearance="outline">
+                        <label class="labels">Email</label>
+                        <input matInput type="text" class="form-control" formControlName="email" [(ngModel)]="this.profile.user[0].email">
+                        <mat-error *ngIf="updateForm.controls['email'].hasError('required')">
+                            Email is <strong>required</strong>
+                          </mat-error>
+                          <mat-error *ngIf="updateForm.controls['email'].hasError('email')">
+                            Please enter a valid <strong>Email</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    </div>
+                
+                
+                
+                  
+                    <div class="col-md-12 ">
+                        <mat-form-field  appearance="outline">
+                        <label class="labels">Phone Number</label>
+                        <input matInput type="text" class="form-control" formControlName="phoneNumber" [(ngModel)]="this.profile.user[0].phoneNumber">
+                        <mat-error *ngIf="updateForm.controls['phoneNumber'].hasError('required')">
+                            Phone Number is <strong>required</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    </div>
+                
+                </div>
+               
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" [disabled]="!updateForm.valid" (click)="UpdateUser()">Save Profile</button></div>
+            </form>
+            </div>
+        </div>
+        
+        <div class="col-md-4" style="margin-top:100px ;">
+            <form [formGroup]="passwordForm">
+            <div class="p-3 py-5">
+                
+                <div class="d-flex justify-content-between align-items-center experience"><span class="display-4">Change Password</span></div><br><br><br>
+                
+                <mat-form-field appearance="outline">
+                <div class="col-md-12"><label class="labels">Old Password</label><input matInput type="text" class="form-control" formControlName="oldPassword"></div> <br>
+                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                <div class="col-md-12"><label class="labels">New Password</label><input matInput type="text" class="form-control" formControlName="newPassword"></div>
+                <mat-error *ngIf="passwordForm.controls['newPassword'].hasError('required')">
+                    password is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="passwordForm.controls['newPassword'].hasError('minlength')">
+                    password is too <strong>short</strong>
+                  </mat-error>
+                  <br>
+                  </mat-form-field>
+                <mat-form-field appearance="outline">
+                <div class="col-md-12"><label class="labels">Confirm Password</label><input matInput type="text" class="form-control" formControlName="confirmPassword" (change)="matchError()"></div>
+                <mat-error *ngIf="passwordForm.controls['confirmPassword'].hasError('minlength')">
+                    Please enter a strong password
+                  </mat-error>
+                  <mat-error *ngIf="passwordForm.controls['confirmPassword'].hasError('required')">
+                    password is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="passwordForm.controls['confirmPassword'].hasError('mismatch')">
+                    confirmPassword must match with password
+                  </mat-error>
+                  <br>
+            </mat-form-field>
+            </div>
+            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" style="margin-top: -105px;" 
+              type="button" [disabled]="!passwordForm.valid" (click)="UpdatePassword()">Update Password</button></div>
+        </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

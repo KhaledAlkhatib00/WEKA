@@ -1,0 +1,230 @@
+<app-sidebar></app-sidebar>
+<div class="container col-md-10 " style="width:150% ; margin-left: 17%;">
+<div class="container-fluid py-4">
+    
+            
+    
+      <div class="align-middle d-flex justify-content-around">
+        <button *ngIf="this.active==true" type="checkbox" class="btn btn-primary" (click)="Switch()">Show Blocked Articls</button>
+        <button *ngIf="this.active==false" type="checkbox" class="btn btn-secondary" (click)="Switch()">Show Active Articls</button>
+      </div>
+
+
+                <div class="content" *ngIf="this.active==true">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card ">
+                        <div class="card-header">
+
+                          <h4 class="card-title"> Active Article Table</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table tablesorter " id="">
+                              <thead class="text-primary h2">
+                                <tr>
+                                  <th>
+                                    subject
+                                  </th>
+                                  <th>
+                                   Number of Views
+                                  </th>
+                                  <th>
+                                    Publish Date
+                                  </th>
+                                  <th class="text-center">
+                                    Controles
+                                  </th>
+                                </tr>
+                              </thead>
+                <tbody class="h4">
+
+
+
+                  <tr *ngFor="let obj of home.activePost">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          
+                          <img src="./../../../assets/Images/{{obj.articleImage}}" class="avatar avatar-sm me-3" >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm text-secondary">{{obj.articleTitel}} </h6>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      
+                      <h6  class="mb-0 text-sm text-secondary"> {{obj.views}}</h6>
+                      
+                    </td>
+                    <td>
+                      
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.publishDate}}</h6>
+                    </td>
+                    
+                   
+                    <td class="align-middle d-flex justify-content-around">
+                     
+                      <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon"  (click)="ViewArticle(obj)">
+                        <i class="tim-icons icon-pencil"></i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-primary btn-sm btn-icon" (click)="BlockArticle(obj.id,obj.userId,obj.articleTitel)">
+                        <i class="tim-icons icon-lock-circle"></i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon" (click)="DeleteArticle(obj.id)">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                     
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                </div>
+
+
+                <div class="content" *ngIf="this.active==false">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card ">
+                          <div class="card-header">
+  
+                            <h4 class="card-title"> blocked Article Table</h4>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table tablesorter " id="">
+                                <thead class="text-primary h2">
+                                  <tr>
+                                    <th>
+                                      subject
+                                    </th>
+                                    <th>
+                                     Number of Views
+                                    </th>
+                                    <!-- <th>
+                                      Number of Reports
+                                     </th> -->
+                                    <th>
+                                      Publish Date
+                                    </th>
+                                    <th class="text-center">
+                                      Controles
+                                    </th>
+                                  </tr>
+                                </thead>
+                  <tbody class="h4">
+  
+  
+  
+                    <tr *ngFor="let obj of home.blockedPost">
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            
+                            <img src="./../../../assets/Images/{{obj.articleImage}}" class="avatar avatar-sm me-3" >
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm text-secondary">{{obj.articleTitel}} </h6>
+                            
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        
+                        <h6  class="mb-0 text-sm text-secondary"> {{obj.views}}</h6>
+                        
+                      </td>
+
+                      <!-- <td>
+                       
+                        <div *ngFor="let i of this.home.reports">
+                          <div *ngIf="i.articleId==obj.Id">
+                            //ask about it 
+                          </div>
+                        </div>
+                        <h6  class="mb-0 text-sm text-secondary"></h6>
+                      </td> -->
+                      <td>
+                        
+                          <h6  class="mb-0 text-sm text-secondary"> {{obj.publishDate}}</h6>
+                      </td>
+                      
+                     
+                      <td  class="align-middle d-flex justify-content-around">
+                       
+                        <!-- <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user" (click)="ViewArticle(obj)">
+                          View
+                        </a>
+                        <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Block user" (click)="BlockArticle(obj.id)">
+                          Block
+                        </a> -->
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon"  (click)="ViewArticle(obj)">
+                          <i class="tim-icons icon-pencil"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon" (click)="UnBlockArticle(obj.id,obj.userId,obj.articleTitel)">
+                          <i class="tim-icons icon-key-25"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon" (click)="DeleteArticle(obj.id)">
+                          <i class="tim-icons icon-simple-remove"></i>
+                      </button>
+                       
+                      </td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                  </div>
+
+            </div>
+        </div>
+
+        <ng-template #callBlockDailog class="bg" >
+
+          <div class="bg" style="text-align: center;">
+          <h2 style="margin-right:30px ; margin-left:30px ; color:black ">Are You Sure you want to Block this article?</h2>
+          <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;" >Yes</button>
+          <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+        </div>
+          </ng-template>
+    
+          
+          <ng-template #callUnBlockDailog >
+            
+            <div style="text-align: center;">
+            <h2 style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure you want to UnBlock this article?</h2>
+            <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;" >Yes</button>
+            <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+          </div>
+            </ng-template>
+
+            <ng-template #callDeleteDailog>
+
+              <div style="text-align: center;">
+              <h2 style="margin-right:30px ; margin-left:30px ; color:black ">Are You Sure you want to Delete this article?</h2>
+              <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;" >Yes</button>
+              <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+            </div>
+              </ng-template>
+
+              <ng-template #callViewDailog>
+
+                <div style="text-align: center;">
+                <h2 style="margin-right:30px ; margin-left:30px ; color:black ">Article Graph</h2>
+                <div>{{graph}}</div>
+                
+                <button mat-dialog-close="no" class="btn btn-secondary">Close</button>
+              </div>
+                </ng-template>

@@ -1,0 +1,239 @@
+
+<style>
+  #formFeild
+  {
+    width: 730px;
+  }
+</style>
+<div class="container"  style="width: 1300px;display: flex;  " > 
+  <div class="col-md-8" style="border: 1px solid;">
+    <h2 mat-dialog-title>Add New Post</h2>
+    <mat-dialog-content class="mat-typography">
+      
+   
+    <form  class="example-form" [formGroup]="createForm" >
+        <mat-form-field class="example-full-width" appearance="fill" id="formFeild">
+          <input type="text" matInput formControlName="articleTitel" (change)="inputValueEmail($event)"
+                 placeholder="Titel">
+      
+          <mat-error *ngIf="createForm.controls['articleTitel'].hasError('required')">
+            Titel <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+    <br>
+    
+
+   
+    <angular-editor id="editor1" formControlName="articleGrapgh" [config]="editorConfig" >
+      <ng-template #customButtons let-executeCommandFn="executeCommandFn" >
+        <ae-toolbar-set>
+          <ae-button iconClass="fa fa-html5" title="Angular editor logo"
+                     (buttonClick)="executeCommandFn('insertHtml')">
+          </ae-button>
+        </ae-toolbar-set>
+      </ng-template>
+    </angular-editor>
+
+    <br>
+          <mat-form-field class="example-full-width" appearance="fill"  id="formFeild">
+            <mat-label>PublishDate </mat-label>
+            <input type="date" matInput formControlName="publishDate"
+                   >
+            <mat-error *ngIf="createForm.controls['publishDate'].hasError('required')">
+                publishDate  is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+    <br>
+  
+
+     <h4>Select Category</h4>
+      <select (change)="selectHandler($event)"  formControlName="categoryId">
+        <option *ngFor="let o of home.category" value="{{o.id}}">{{o.categoryName}}</option>
+      </select>
+
+  
+    <br>
+
+    <br>
+    
+    
+    <mat-label>Upload Image </mat-label>
+    <input type="file" #file formControlName="articleImage" (change)="uplodeFile(file.files)"  id="formFeild">
+    </form>
+  </mat-dialog-content>
+  </div>
+
+  <div class="col-md-4" style="border: 1px solid; margin-left:2px ;">
+  
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    
+    <div class="container" >
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Payment Details
+              </h3>
+            </div>
+            <div class="panel-body">
+              <form role="form">
+    
+                <div class="form-group">
+                  <label for="cardNumber">
+                    CARD NUMBER</label>
+                  <div class="input-group">
+                    <input style="color: #000;" type="text" class="form-control" id="cardNumber" 
+                    [value]="cardNum" (change)="inputValue1($event)" placeholder="Valid Card Number" required autofocus />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-7 col-md-7">
+                    <div class="form-group">
+                      <label for="expityMonth">EXPIRY DATE</label>
+                      <div class="col-xs-12">
+                        <div class="col-xs-12">
+                          <input style="color: #000;" type="text" class="form-control" id="expityMonth"
+                           [value]="mm" (change)="inputValue3($event)" placeholder="MM" required />
+                        </div>
+                        <div class="col-xs-12">
+                          <input style="color: #000;" type="text" class="form-control" id="expityYear" 
+                          [value]="yy" (change)="inputValue2($event)" placeholder="YY" required />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 col-md-5 pull-right">
+                    <div class="form-group">
+                      <label for="cvCode">
+                        CV CODE</label>
+                      <input style="color: #000;" type="text" class="form-control" id="cvCode"
+                       [value]="cv" (change)="inputValue4($event)" placeholder="CV" required />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <br />
+          <a (click)="checkPaymentInfo()" class="btn btn-success btn-lg btn-block" role="button"><span style="color: black;">Pay</span></a>
+          <a (click)="OpenCreateVisaDaialog()" style="color:rgb(45, 45, 199);">Verify your visa</a>
+        </div>
+      </div>
+    </div>
+  
+   <div> 
+<mat-dialog-actions align="end" style="margin-top: -3px;">
+  <button class="btn" mat-button mat-dialog-close><span style="color:white">Cansel</span></button>
+  <button name="1"id="1" disabled class="btn" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="checkArticleStatus()"><span style="color:white">Publish</span></button>
+</mat-dialog-actions>
+</div>
+</div>
+
+
+
+   
+
+<ng-template #collVisaDaialog >
+  
+   <form  class="example-form" [formGroup]="createVisaForm" style="width: 400px;">
+ 
+    <div class="container p-0">
+      <div class="card px-4">
+          <h2 style="align-items: center; color: #fff;margin-left: 30%;">Verify Visa</h2>
+          <div class="row gx-3">
+            <div class="col-12">
+
+              <div class="d-flex flex-column">
+                  <img src="./../../../assets/img/Visa.png" style="height:250px ;">
+              </div>
+              
+           </div>
+          <div class="col-12">
+            
+              <mat-form-field class="example-full-width" appearance="fill" style="width: 100%; margin-left:-9px ;">
+  
+                     <div class="">
+                        <p class="text mb-1">Card Number</p>
+  
+                        <input style="background-color:#fff ;color: #000;" matInput formControlName="visaNumber"
+                         class="form-control mb-3" type="number" placeholder="1234 5678 435678">
+                     </div>
+                     <mat-error *ngIf="createVisaForm.controls['visaNumber'].hasError('required')">
+                      Visa Number  is <strong>required</strong>
+                   </mat-error>
+              </mat-form-field>
+
+          </div>
+             
+              <div class="col-3">
+
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%; margin-left:-9px ;">
+  
+                  <div class="">
+                    <p class="text mb-1">MM</p>
+
+                     <input style="background-color:#fff ;color: #000;" matInput formControlName="mm"
+                      class="form-control mb-3" type="number" placeholder="MM">
+                  </div>
+                  <mat-error *ngIf="createVisaForm.controls['mm'].hasError('required')">
+                   <strong>required</strong>
+                </mat-error>
+                </mat-form-field>
+
+                  
+              </div>
+              <div class="col-3">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%; margin-left:-20px ;">
+  
+                  <div class="">
+                    <p class="text mb-1">YY</p>
+
+                     <input style="background-color:#fff ;color: #000;" matInput formControlName="yy"
+                      class="form-control mb-3" type="number" placeholder="YY">
+                  </div>
+                  <mat-error *ngIf="createVisaForm.controls['yy'].hasError('required')">
+                  <strong>required</strong>
+                </mat-error>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6">
+              <mat-form-field class="example-full-width" appearance="fill" style="width: 100%; margin-left:-20px ;">
+
+                <div class="">
+                  <p class="text mb-1">CV</p>
+
+                   <input style="background-color:#fff ;color: #000;" matInput formControlName="cv"
+                    class="form-control mb-3" type="number" placeholder="CV">
+                </div>
+                <mat-error *ngIf="createVisaForm.controls['yy'].hasError('required')">
+                 <strong>required</strong>
+              </mat-error>
+              </mat-form-field>
+
+          </div>
+          <div class="col-12" style="margin-bottom: 12px;">
+            <mat-dialog-actions align="end">
+                
+                    <div  (click)="CreateVisa()" class="btn btn-primary" style="width: 100%; height: 90%;">
+                        <span>Verify</span>
+                    </div>
+              </mat-dialog-actions>
+          </div>
+            
+          </div>
+
+      </div>
+  </div>
+ 
+   </form>
+
+ 
+ </ng-template>
+   
+          
+

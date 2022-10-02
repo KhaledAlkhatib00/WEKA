@@ -1,0 +1,124 @@
+
+<app-sidebar></app-sidebar>
+
+
+<div class="container col-md-12 " style="width:150% ; margin-left: 7%;">
+    
+  <div class="align-middle d-flex justify-content-around">
+    <button class="btn btn-info " (click)="CreateDialog()" style="text-align: center;">Add Category</button>
+  </div>
+<div class="container-fluid py-4 col-md-10">
+    <div class="row">
+        
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Category table</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category Image</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Controles</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let obj of category.categories">
+                   
+                    <td>
+
+                        <img src="./../../../assets/Images/{{obj.categoryImage}}" height="200px" width="350px">
+                     
+                      
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0 text-secondary">{{obj.categoryName}}</p>
+                      
+                    </td>
+                    
+                   
+                    <td  class="align-middle d-flex justify-content-around">
+                      <a  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" (click)="updateDailog(obj)">
+                        Edit
+                      </a>
+                      <a  class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user" (click)="DeleteCategory(obj.id)">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+</div>
+<ng-template #calldeleteDailog>
+
+  <div style="text-align: center;">
+    <h2 style="margin-right:30px ; margin-left:30px ; color:black">Are You Sure uyou want to delete this Category?</h2>
+    <button mat-dialog-close="yes" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Yes</button>
+    <button mat-dialog-close="no" class="btn btn-secondary">No</button>
+  </div>
+    </ng-template>
+
+
+    <ng-template #callupdateDailog>
+      <div style="text-align: center;">
+        <form class="example-form" [formGroup]="updateForm"  style="margin-right:30px ; margin-left:30px ; color:black" >
+           
+            
+             
+        
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Category Name</mat-label>
+                <input type="text" matInput formControlName="categoryName" [(ngModel)]="p_data.categoryName">
+              </mat-form-field>
+        <br>
+       
+            <mat-label >Category Image</mat-label>
+            <input type="file"  formControlName="categoryImage" #file (change)="uploadImage(file.files)" class="btn btn-secondary">
+          
+          <br>
+        
+            
+            <button (click)="UpdateCategory()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Update</button>
+        </form>
+      </div>
+       
+        
+    </ng-template>
+
+    
+    <ng-template #callCreateDailog>
+      <div style="text-align: center;">
+        <form class="example-form" [formGroup]="CreateForm" style="margin-right:30px ; margin-left:30px ; color:black"  >
+           
+            
+             
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Category Name</mat-label>
+                <input type="text" matInput placeholder="Category Name" formControlName="categoryName" >
+              </mat-form-field>
+        <br>
+        
+            <input type="file"  formControlName="categoryImage" #file (change)="uploadImage(file.files)" class="btn btn-secondary">
+          
+          <br>
+        
+            
+            <button (click)="CreateCategory()" class="btn btn-primary" style="margin: 0px 20px 0px 20px;">Create</button>
+        </form>
+      </div>
+       
+        
+    </ng-template>
